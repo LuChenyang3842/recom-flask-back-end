@@ -1,0 +1,42 @@
+FORMAT: 1A
+HOST: localhost
+
+# Zomato Uber
+
+APIs descriptions
+
+## Retaurant 
+
+### recommendation  [GET /restaurant/recommendation/{?q}]
+
++ Parameters
+    + lon - lontitude
+    + lat - latitude
+    + text - last text by user
+    + time - 0,1,2,3,4,.....,24
+
++ Response 200 (application/json)
+
+        [
+            {
+
+            }
+        ]
+### selection based [GET /restaurant/selectionbased/{?q}]
+
++ Parameters
+    + lon - lontitude
+    + lat - latitude
+    + text - last text by user
+    + categories - "Breakfast"
+    + time  - 0,1,2,3,4,.....,24
+    + cuisines - chinese
+
++ Response 200 (application/json)
+
+        [
+            {
+
+            }
+        ]
+        

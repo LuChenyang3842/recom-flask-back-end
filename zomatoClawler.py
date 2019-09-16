@@ -67,7 +67,7 @@ class cuisines(Enum):
 SEARCH_URL = 'https://developers.zomato.com/api/v2.1/search'
 
 payload = {
-    'count': 1,
+    'count': 10,
     'lat':'-37.813629',
     'lon':'144.963058',
     'radius':'1000',
@@ -84,3 +84,4 @@ r = requests.get(SEARCH_URL, headers=search_headers, params=payload)
 print(r.json())
 
 
+def resolve (json):
