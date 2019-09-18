@@ -3,7 +3,7 @@ app = Flask(__name__)
 import json
 
 
-@app.route('/recommendation', methods = ["GET"])   # GET 和 POST 都可以
+@app.route('/restaurant/recommendation/', methods = ["GET"])   # GET 和 POST 都可以
 def get_data():
     # 假设有如下 URL
     # http://10.8.54.48:5000/index?name=john&age=20
@@ -20,8 +20,8 @@ def get_data():
     resp = json.dumps(res)
     # resp = '{{"obj": {} }}'.format(res.to_json(orient = "records", force_ascii = False))
     return resp
-    
-@app.route('/recommendation', methods = ["GET"])   # GET 和 POST 都可以
+
+@app.route('/restaurant/selectionbased/', methods = ["GET"])   # GET 和 POST 都可以
 def get_data():
     # 假设有如下 URL
     # http://10.8.54.48:5000/index?name=john&age=20
@@ -31,6 +31,8 @@ def get_data():
     lon = request.args.get("lon")
     text = request.args.get("text")
     time = request.args.get("time")
+    cuisines = request.args.get("cuisines")
+    categories = request.args.get("categories")
     
     res= test(lat, lon,text,time)
     
