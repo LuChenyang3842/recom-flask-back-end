@@ -1,5 +1,6 @@
 import requests
 from enum import Enum
+import json
 
 class RestaurantCategory(Enum):
      Breakfast = 1
@@ -8,7 +9,7 @@ class RestaurantCategory(Enum):
      Lunch = 9
      Bar = 11
      Club = 14
-     
+
 class cuisines(Enum):
     chinese = 25
     Australia = 201
@@ -40,11 +41,7 @@ class cuisines(Enum):
     Indian = 148
 
 
-
-
-
-
-# retaurant 
+# retaurant
 # longtitude
 # latitude
 
@@ -52,16 +49,9 @@ class cuisines(Enum):
 #     def __init__(self):
 
 #     def request(self):
-    
+
 
 #     def formatResult():
-
-
-
-
-
-
-
 
 
 SEARCH_URL = 'https://developers.zomato.com/api/v2.1/search'
@@ -81,7 +71,15 @@ search_headers = {
 
 
 r = requests.get(SEARCH_URL, headers=search_headers, params=payload)
-print(r.json())
+
+restaurants = r.json()['restaurants']
+
+restaurant_list = []
+
+for restaurant in restaurants:
+    restaurant_list.append({'Name': restaurant['restaurant']['name'], "cuisines": [x.strip() for x in restaurant['restaurant']['cuisines'].split(',')],
+    "lat": restaurant['restaurant']['location']['latitude'], "long": restaurant['restaurant']['location']['longitude'], "highlights": restaurant['restaurant']['highlights'], "Thumb": restaurant['restaurant']['thumb'],
+    "user_Rating": restaurant['restaurant']['user_rating']['aggregate_rating'],"phone_Numbers": restaurant['restaurant']['phone_numbers']})
 
 
-def resolve (json):
+print(restaurant_list)
