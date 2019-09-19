@@ -2,7 +2,7 @@ from flask import request, jsonify,Flask
 app = Flask(__name__)
 import json
 # from recommendBySelection import recommendBySelection s
-# import recommendBySelection.recommendBySelection
+import recommendBySelection
 
 
 @app.route('/restaurant/recommendation/', methods = ["GET"])   # GET 和 POST 都可以
@@ -35,10 +35,10 @@ def get_data1():
     lon = request.args.get("lon")
     text = request.args.get("text")
     time = request.args.get("time")
-    cuisines = request.args.get("cuisines")
-    categories = request.args.get("categories")
+    cuisine = request.args.get("cuisines")
+    categorie = request.args.get("categories")
     
-    res = recommendBySelection.requestForResult(lat, lon,text,time,cuisine,categorie)
+    res = recommendBySelection.recommendBySelection().requestForResult(lat,lon,text,time,cuisine,categorie)
     
     # 将数据再次打包为 JSON 并传回
     resp = json.dumps(res)
@@ -54,12 +54,22 @@ def test(lat, lon, text, time):
                 "thumb": "https://media.licdn.com/dms/image/C5603AQEH5JqXT-IE2Q/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=9i-nhnn7zTOqQKGV4Dj15u5kwHwe8vELttNkusGBhBE",
                 "userRating": 4.4,
                 "phoneNumbers": "0321321",
-                "lon": -37.802518,
-                "lat":144.959633,
+                "lat":-37.799346,
+                "lon":144.962114,
             }
+    content1 = {
+            "name":"Humbles Ray2",
+            "cuisines": ["Chinese", "Asian Fusin"],
+            "highlights": ['take Away Available', 'breakfast', 'dinner'],
+            "thumb": "https://media.licdn.com/dms/image/C5603AQEH5JqXT-IE2Q/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=9i-nhnn7zTOqQKGV4Dj15u5kwHwe8vELttNkusGBhBE",
+            "userRating": 4.4,
+            "phoneNumbers": "0321321",
+            "lon": 144.963973,
+            "lat":-37.800493,
+        }
 
 
-    res = {"restaurants": [content,content]}
+    res = {"restaurants": [content,content1]}
 
 
     return res
