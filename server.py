@@ -1,7 +1,8 @@
 from flask import request, jsonify,Flask
 app = Flask(__name__)
 import json
-from recommendBySelection import recommendBySelection 
+# from recommendBySelection import recommendBySelection s
+# import recommendBySelection.recommendBySelection
 
 
 @app.route('/restaurant/recommendation/', methods = ["GET"])   # GET 和 POST 都可以
@@ -45,17 +46,23 @@ def get_data1():
     return resp
 
 
-def test(lat, lon, text, time):
-    return {
-        "name":"Humbles Ray",
-        "cuisines": ["Chinese", "Asian Fusin"],
-        "highlights": ['take Away Available', 'breakfast', 'dinner'],
-        "thumb": "https://media.licdn.com/dms/image/C5603AQEH5JqXT-IE2Q/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=9i-nhnn7zTOqQKGV4Dj15u5kwHwe8vELttNkusGBhBE",
-        "userRating": 4.4,
-        "phoneNumbers": "0321321",
-        "lon": 10.22,
-        "lat":90.11,
-    }
+def test(lat, lon, text, time): 
+    content = {
+                "name":"Humbles Ray",
+                "cuisines": ["Chinese", "Asian Fusin"],
+                "highlights": ['take Away Available', 'breakfast', 'dinner'],
+                "thumb": "https://media.licdn.com/dms/image/C5603AQEH5JqXT-IE2Q/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=9i-nhnn7zTOqQKGV4Dj15u5kwHwe8vELttNkusGBhBE",
+                "userRating": 4.4,
+                "phoneNumbers": "0321321",
+                "lon": -37.802518,
+                "lat":144.959633,
+            }
+
+
+    res = {"restaurants": [content,content]}
+
+
+    return res
 
 
 if __name__ == "__main__":
