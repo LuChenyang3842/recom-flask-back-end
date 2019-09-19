@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from flask import request, jsonify,Flask
 app = Flask(__name__)
 import json
