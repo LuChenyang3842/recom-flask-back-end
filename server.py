@@ -5,7 +5,7 @@ app = Flask(__name__)
 import json
 # from recommendBySelection import recommendBySelection s
 import recommendBySelection
-
+import sentimentRecommendation
 
 @app.route('/restaurant/recommendation/', methods = ["GET"])   # GET 和 POST 都可以
 def get_data():
@@ -13,12 +13,17 @@ def get_data():
     # http://10.8.54.48:5000/index?name=john&age=20
 
     #可以通过 request 的 args 属性来获取参数
-    lat = request.args.get("lat")
-    lon = request.args.get("lon")
-    text = request.args.get("text")
-    time = request.args.get("time")
-    
-    res= test(lat, lon,text,time)
+    # lat = request.args.get("lat")
+    # lon = request.args.get("lon")
+    # text = request.args.get("text")
+    # time = request.args.get("time")
+
+    lat = -37.813629
+    lon = 144.963058
+    time = 14
+    text = "I am happy with japanese food."
+    res = sentimentRecommendation.sentiment_recommendation().request_for_result(lat, lon, text, time)
+
     # 将数据再次打包为 JSON 并传回
     resp = json.dumps(res)
     # resp = '{{"obj": {} }}'.format(res.to_json(orient = "records", force_ascii = False))
@@ -39,16 +44,16 @@ def get_data1():
     time = request.args.get("time")
     cuisine = request.args.get("cuisines")
     categorie = request.args.get("categories")
-    
+
     res = recommendBySelection.recommendBySelection().requestForResult(lat,lon,text,time,cuisine,categorie)
-    
+
     # 将数据再次打包为 JSON 并传回
     resp = json.dumps(res)
     # resp = '{{"obj": {} }}'.format(res.to_json(orient = "records", force_ascii = False))
     return resp
 
 
-def test(lat, lon, text, time): 
+def test(lat, lon, text, time):
     content = {
                 "name":"Humbles Ray",
                 "cuisines": ["Chinese", "Asian Fusin"],
