@@ -78,8 +78,8 @@ restaurant_list = []
 
 for restaurant in restaurants:
     restaurant_list.append({'Name': restaurant['restaurant']['name'], "cuisines": [x.strip() for x in restaurant['restaurant']['cuisines'].split(',')],
-    "lat": restaurant['restaurant']['location']['latitude'], "long": restaurant['restaurant']['location']['longitude'], "highlights": restaurant['restaurant']['highlights'], "Thumb": restaurant['restaurant']['thumb'],
-    "user_Rating": restaurant['restaurant']['user_rating']['aggregate_rating'],"phone_Numbers": restaurant['restaurant']['phone_numbers']})
+    "lat": restaurant['restaurant']['location']['latitude'], "lon": restaurant['restaurant']['location']['longitude'], "highlights": restaurant['restaurant']['highlights'], "Thumb": restaurant['restaurant']['thumb'],
+    "userRating": restaurant['restaurant']['user_rating']['aggregate_rating'],"phoneNumbers": restaurant['restaurant']['phone_numbers']})
 
 
 print(restaurant_list)
