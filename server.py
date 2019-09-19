@@ -44,10 +44,14 @@ def get_data():
 
 def test(lat, lon, text, time):
     return {
-        "lat": lat,
-        'lon':lon,
-        'text':text,
-        'time':time
+        "name":"Humbles Ray",
+        "cuisines": ["Chinese", "Asian Fusin"],
+        "highlights": ['take Away Available', 'breakfast', 'dinner']
+        "thumb": "https://media.licdn.com/dms/image/C5603AQEH5JqXT-IE2Q/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=9i-nhnn7zTOqQKGV4Dj15u5kwHwe8vELttNkusGBhBE,
+        "userRating": 4.4,
+        "phoneNumbers": "0321321",
+        "lon": 10.22,
+        "lat"":90.11,
     }
 
 
