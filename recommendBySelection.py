@@ -53,9 +53,9 @@ class recommendBySelection():
             'count': 5,
             'lat':lat,
             'lon':lon,
-            'radius':2000,
-            'cusines':[cuisine],
-            'categories':[categorie],
+            'radius':10000,
+            'cusines':25,
+            'categories':categorie,
 
         }
         r = requests.get(SEARCH_URL, headers=search_headers, params=payload)
