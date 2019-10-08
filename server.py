@@ -13,15 +13,15 @@ def get_data():
     # http://10.8.54.48:5000/index?name=john&age=20
 
     #可以通过 request 的 args 属性来获取参数
-    # lat = request.args.get("lat")
-    # lon = request.args.get("lon")
-    # text = request.args.get("text")
-    # time = request.args.get("time")
+    lat = request.args.get("lat")
+    lon = request.args.get("lon")
+    text = request.args.get("text")
+    time = request.args.get("time")
 
-    lat = -37.813629
-    lon = 144.963058
-    time = 14
-    text = "I am happy with japanese food."
+    # lat = -37.813629
+    # lon = 144.963058
+    # time = 14
+    # text = "I am happy with chinese food."
     res = sentimentRecommendation.sentiment_recommendation().request_for_result(lat, lon, text, time)
 
     # 将数据再次打包为 JSON 并传回
