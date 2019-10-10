@@ -50,12 +50,14 @@ class recommendBySelection():
             }
 
         payload = {
-            'count': 5,
+            'count':'5',
             'lat':lat,
             'lon':lon,
-            'radius':2000,
-            'cuisines':[cuisine],
-            'categories':[categorie],
+            'radius':'6000',
+            # 'cuisines':cuisine,
+            # 'categories':categorie,
+            'entity_id':259,
+            'entity_type':'city'
 
         }
         r = requests.get(SEARCH_URL, headers=search_headers, params=payload)
