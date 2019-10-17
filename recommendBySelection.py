@@ -43,7 +43,7 @@ class recommendBySelection():
         
     def requestForResult(self,lat, lon,text,time,cuisine,category):
         SEARCH_URL = 'https://developers.zomato.com/api/v2.1/search'
-        
+
         search_headers = {
             'user-key': 'afbb0f02471c0acb2ac10d6ff9bcda9b',
             'Accept': 'application/json'
@@ -68,7 +68,7 @@ class recommendBySelection():
         return result
 
 
-    
+
     def resolveResult(self, restaurants):
         restaurant_list = []
         for restaurant in restaurants:
