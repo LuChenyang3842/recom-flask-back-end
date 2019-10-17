@@ -156,6 +156,15 @@ class sentiment_recommendation():
         """
         cuisine_ids = self.generate_keywords(text)
         print(cuisine_ids)
+
+        if time.strip() != "":
+            time = int(time)
+            categorie_id = self.generate_category(time)
+            print("categories are", categorie_id)
+        else:
+            print("time is:", time)
+            categorie_id = [1,3,9,10,11,14]
+
         categorie_id = self.generate_category(time)
 
         SEARCH_URL = 'https://developers.zomato.com/api/v2.1/search'
