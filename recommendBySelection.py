@@ -53,7 +53,7 @@ class recommendBySelection():
             'count': 5,
             'lat':float(lat),
             'lon':float(lon),
-            'radius':20000,
+            'radius':2000,
             'cuisines':[cuisine],
             'category':category,
 

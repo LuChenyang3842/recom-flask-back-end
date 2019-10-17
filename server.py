@@ -26,6 +26,7 @@ def get_data():
 
     # 将数据再次打包为 JSON 并传回
     resp = json.dumps(res)
+    print(resp)
     # resp = '{{"obj": {} }}'.format(res.to_json(orient = "records", force_ascii = False))
     return resp
 
@@ -48,11 +49,28 @@ def get_data1():
     print(lon)
     print(cuisine)
     print(category)
+    categoryDict = {
+        "Breakfast":8,
+        "Lunch":9,
+        "Dinner":10,
+        "Cafes":6,
+    }
 
-    res = recommendBySelection.recommendBySelection().requestForResult(lat,lon,text,time,cuisine,categorie)
+    cuisineDict = {
+        "Chinese":25,
+        "Korean":67,
+        "Australia":201,
+        "Japanese":60,
+
+    }
+    cuisine = cuisineDict[cuisine]
+    category = categoryDict[category]
+
+    res = recommendBySelection.recommendBySelection().requestForResult(lat,lon,text,time,cuisine,category)
 
     # 将数据再次打包为 JSON 并传回
     resp = json.dumps(res)
+    print(resp)
     # resp = '{{"obj": {} }}'.format(res.to_json(orient = "records", force_ascii = False))
     return resp
 
@@ -81,7 +99,7 @@ def test(lat, lon, text, time):
 
 
     res = {"restaurants": [content,content1]}
-
+    print(res)
 
     return res
 

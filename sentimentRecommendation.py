@@ -126,6 +126,7 @@ class sentiment_recommendation():
         # Bar = 11
         # Club = 14
 
+        print("current time is:", time, "type is:", type(time))
         time = int(time)
 
         if 5 <= time <= 11:
@@ -170,7 +171,7 @@ class sentiment_recommendation():
             'lon':lon,
             'radius':2000,
             'cuisines':cuisine_ids,
-            'categories':categorie_id,
+            'category':categorie_id,
 
         }
 
