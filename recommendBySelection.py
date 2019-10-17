@@ -41,7 +41,7 @@ cuisine_dict = {
 
 class recommendBySelection():
         
-    def requestForResult(self,lat, lon,text,time,cuisine,categorie):
+    def requestForResult(self,lat, lon,text,time,cuisine,category):
         SEARCH_URL = 'https://developers.zomato.com/api/v2.1/search'
         
         search_headers = {
@@ -51,11 +51,11 @@ class recommendBySelection():
 
         payload = {
             'count': 5,
-            'lat':lat,
-            'lon':lon,
-            'radius':10000,
-            'cusines':25,
-            'categories':categorie,
+            'lat':float(lat),
+            'lon':float(lon),
+            'radius':20000,
+            'cuisines':[cuisine],
+            'category':category,
 
         }
         r = requests.get(SEARCH_URL, headers=search_headers, params=payload)
@@ -87,5 +87,3 @@ cuisine = 25
 categorie = 10
 
 # print(recommendBySelection().requestForResult( lat, lon, text, time, cuisine, categorie))
-
-

@@ -42,8 +42,12 @@ def get_data1():
     lon = request.args.get("lon")
     text = request.args.get("text")
     time = request.args.get("time")
-    cuisine = request.args.get("cuisines")
-    categorie = request.args.get("categories")
+    cuisine = request.args.get("cuisine")
+    category = request.args.get("categorie")
+    print(lat)
+    print(lon)
+    print(cuisine)
+    print(category)
 
     res = recommendBySelection.recommendBySelection().requestForResult(lat,lon,text,time,cuisine,categorie)
 
