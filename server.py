@@ -22,6 +22,7 @@ def get_data():
     # lon = 144.963058
     # time = 14
     # text = "I am happy with chinese food."
+    print("lat: ",lat, ", lon:",lon," ,text:",text,",time", time)
     res = sentimentRecommendation.sentiment_recommendation().request_for_result(lat, lon, text, time)
 
     # 将数据再次打包为 JSON 并传回
@@ -35,8 +36,6 @@ def get_data():
 
 @app.route('/restaurant/selectionbased/', methods = ["GET"])   # GET 和 POST 都可以
 def get_data1():
-    # 假设有如下 URL
-    # http://10.8.54.48:5000/index?name=john&age=20
 
     #可以通过 request 的 args 属性来获取参数
     lat = request.args.get("lat")
@@ -45,10 +44,8 @@ def get_data1():
     time = request.args.get("time")
     cuisine = request.args.get("cuisine")
     category = request.args.get("categorie")
-    print(lat)
-    print(lon)
-    print(cuisine)
-    print(category)
+
+    print("lat: ",lat, ", lon:",lon," ,cuisine:",cuisine,",category", category)
     categoryDict = {
         "Breakfast":8,
         "Lunch":9,
@@ -70,8 +67,7 @@ def get_data1():
 
     # 将数据再次打包为 JSON 并传回
     resp = json.dumps(res)
-    print(resp)
-    # resp = '{{"obj": {} }}'.format(res.to_json(orient = "records", force_ascii = False))
+    # print(resp)
     return resp
 
 
@@ -97,12 +93,12 @@ def test(lat, lon, text, time):
             "lat":-37.800493,
         }
 
-
     res = {"restaurants": [content,content1]}
     print(res)
+    print("")
 
     return res
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=None, debug=True)
