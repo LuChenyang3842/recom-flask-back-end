@@ -6,42 +6,7 @@ import requests
 from enum import Enum
 import json
 import resolveLatlngToEntity
-
-# class RestaurantCategory(Enum):
-#     Breakfast = 1
-#     Dinner = 10
-#     Cafes = 3
-#     Lunch = 9
-#     Bar = 11
-#     Club = 14
-
-# cuisine_dict = {
-#         'chinese': 25,
-#         'australia': 201,
-#         'french': 45,
-#         'bar': 225,
-#         'bbq': 193,
-#         'tea': 247,
-#         'cafe': 1039,
-#         'coffee': 161,
-#         'desserts': 100,
-#         'drink': 268,
-#         'fish': 298,
-#         'chips': 298,
-#         'korean': 67,
-#         'pub': 983,
-#         'vegetarian': 308,
-#         'yumcha': 978,
-#         'thai': 95,
-#         'tea': 163,
-#         'steak': 171,
-#         'sichuan': 128,
-#         'spanish': 89,
-#         'pho': 1020,
-#         'icecream':233,
-#         'indian': 148,
-#         'japanese': 60
-#         }
+import random
 
 
 class recommendBySelection():
@@ -62,7 +27,7 @@ class recommendBySelection():
             'count': 5,
             'lat':float(lat),
             'lon':float(lon),
-            'radius':5000,
+            'radius':3000,
             'cuisines':[cuisine],
             'category':category,
             "entity_id": entity_id,
@@ -82,10 +47,39 @@ class recommendBySelection():
 
 
     def resolveResult(self, restaurants):
+        """
+        Reslove the returned restaurants by filtering necessary columns and form the format
+        :param restarurants: dict
+            Raw restaurant dictonary.
+        :return: dict
+            Filtered format of the returned restaurants
+        """
         restaurant_list = []
         for restaurant in restaurants:
             restaurant_list.append({'Name': restaurant['restaurant']['name'], "cuisines": [x.strip() for x in restaurant['restaurant']['cuisines'].split(',')],
             "lat": restaurant['restaurant']['location']['latitude'], "long": restaurant['restaurant']['location']['longitude'], "highlights": restaurant['restaurant']['highlights'], "Thumb": restaurant['restaurant']['thumb'],
             "user_Rating": restaurant['restaurant']['user_rating']['aggregate_rating'],"phone_Numbers": restaurant['restaurant']['phone_numbers']})
+        cuisineDict = { "Chinese":1, "Korean":2,"Australia":3,"Japanese":4,}
+        WordDict = {1: "cozy",2: "tasty",3:'amazing',4:'flavorful',5:'yummy'}
+        for i in range(len(restaurant_list)):
+            icon = 5
+            cuisines = restaurant_list[i]["cuisines"]
+            adjective = WordDict[random.randint(1,5)]
+            comment = "This is a "+ adjective
+            if cuisines:
+                if "Chinese" in cuisines:
+                    icon = 1
+                elif "Korean" in cuisines:
+                    icon = 2
+                elif "Australia" in cuisines:
+                    icon = 3
+                elif "Japanese" in cuisines:
+                    icon = 4
+                else:
+                    icon = 5
+                comment = comment + " " + cuisines[0]
+            restaurant_list[i]['icon'] = icon
+            comment = comment + " restaurant"
+            restaurant_list[i]['comment'] = comment
         res = {"restaurants":restaurant_list }
         return res

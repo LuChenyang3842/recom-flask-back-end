@@ -4,7 +4,8 @@ from textblob import TextBlob
 import emoji
 import re
 import requests
-
+import random
+import resolveLatlngToEntity
 
 class sentiment_recommendation():
 
@@ -166,7 +167,7 @@ class sentiment_recommendation():
             categorie_id = [1,3,9,10,11,14]
 
         categorie_id = self.generate_category(time)
-
+        entity_id,entity_type = resolveLatlngToEntity.get_entity_id_and_type_based_on_latlon(lat,lon)
         SEARCH_URL = 'https://developers.zomato.com/api/v2.1/search'
 
         search_headers = {
@@ -181,6 +182,8 @@ class sentiment_recommendation():
             'radius':2000,
             'cuisines':cuisine_ids,
             'category':categorie_id,
+            "entity_id": entity_id,
+            "entity_type": entity_type,
 
         }
 
@@ -201,5 +204,28 @@ class sentiment_recommendation():
             restaurant_list.append({'Name': restaurant['restaurant']['name'], "cuisines": [x.strip() for x in restaurant['restaurant']['cuisines'].split(',')],
             "lat": restaurant['restaurant']['location']['latitude'], "long": restaurant['restaurant']['location']['longitude'], "highlights": restaurant['restaurant']['highlights'], "Thumb": restaurant['restaurant']['thumb'],
             "user_Rating": restaurant['restaurant']['user_rating']['aggregate_rating'],"phone_Numbers": restaurant['restaurant']['phone_numbers']})
-        res = {"restaurants":restaurant_list}
+        cuisineDict = { "Chinese":1, "Korean":2,"Australia":3,"Japanese":4,}
+        WordDict = {1: "cozy",2: "tasty",3:'amazing',4:'flavorful',5:'yummy'}
+        for i in range(len(restaurant_list)):
+            icon = 5
+            cuisines = restaurant_list[i]["cuisines"]
+            adjective = WordDict[random.randint(1,5)]
+            comment = "This is a "+ adjective
+            if cuisines:
+                if "Chinese" in cuisines:
+                    icon = 1
+                elif "Korean" in cuisines:
+                    icon = 2
+                elif "Australia" in cuisines:
+                    icon = 3
+                elif "Japanese" in cuisines:
+                    icon = 4
+                else:
+                    icon = 5
+                comment = comment + " " + cuisines[0]
+            restaurant_list[i]['icon'] = icon
+            
+            comment = comment + " restaurant"
+            restaurant_list[i]['comment'] = comment
+        res = {"restaurants":restaurant_list }
         return res

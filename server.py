@@ -71,34 +71,6 @@ def get_data1():
     return resp
 
 
-def test(lat, lon, text, time):
-    content = {
-                "name":"Humbles Ray",
-                "cuisines": ["Chinese", "Asian Fusin"],
-                "highlights": ['take Away Available', 'breakfast', 'dinner'],
-                "thumb": "https://media.licdn.com/dms/image/C5603AQEH5JqXT-IE2Q/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=9i-nhnn7zTOqQKGV4Dj15u5kwHwe8vELttNkusGBhBE",
-                "userRating": 4.4,
-                "phoneNumbers": "0321321",
-                "lat":-37.799346,
-                "lon":144.962114,
-            }
-    content1 = {
-            "name":"Humbles Ray2",
-            "cuisines": ["Chinese", "Asian Fusin"],
-            "highlights": ['take Away Available', 'breakfast', 'dinner'],
-            "thumb": "https://media.licdn.com/dms/image/C5603AQEH5JqXT-IE2Q/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=9i-nhnn7zTOqQKGV4Dj15u5kwHwe8vELttNkusGBhBE",
-            "userRating": 4.4,
-            "phoneNumbers": "0321321",
-            "lon": 144.963973,
-            "lat":-37.800493,
-        }
-
-    res = {"restaurants": [content,content1]}
-    print(res)
-    print("")
-
-    return res
-
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=None, debug=True)
