@@ -1,3 +1,18 @@
+This is our flask backend repository for our COMP90018 Project - Daily Picko
+
+```
+├── recommendBySelection.py         recommend by user's selected options
+├── resolveLatlngToEntity.py        xxx
+├── sentimentRecommendation.py      guess what I like recommendation by sentiment analysis of check-in history and time
+├── server.py    xxx
+├── README.md
+├── api
+├── categories.py              xx  
+└── requirements.txt       python dependencies
+
+```
+
+
 Google API
 AIzaSyDG_D-EdEwLb2ipCNinhxdD9EiqFdFA0B8
 
