@@ -10,7 +10,8 @@ def get_address(lat,lon):
     SEARCH_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
     latlng = lat + ',' + lon
     payload = {
-        'key': "AIzaSyDG_D-EdEwLb2ipCNinhxdD9EiqFdFA0B8",
+        # API key removed because of security policy of google
+        'key': "API_key",
         'latlng':latlng
     }
     r = requests.get(SEARCH_URL, headers=None, params=payload)
@@ -54,4 +55,3 @@ def get_entity_id_and_type_based_on_latlon(lat,lon):
     address = get_address(lat,lon)
     entity_id, entity_type = get_entity_id_and_type(address,lat,lon)
     return entity_id, entity_type
-

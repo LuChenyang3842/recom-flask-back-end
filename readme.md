@@ -18,6 +18,8 @@ Pre-Requisite:
 
 ## Install dependencies
 1. run **sudo pip3 install -r requirements.txt** (to install all dependencies)
+2. replace line 14 in file resolveLatlngToEntity.py to the following to add google API key:
+   'key': "AIzaSyDG_D-EdEwLb2ipCNinhxdD9EiqFdFA0B8",
 
 
 ## Steps to run
